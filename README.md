@@ -21,7 +21,7 @@ AI-powered career development platform for CV optimization and interview simulat
 - Tailwind CSS
 - Prisma (MySQL)
 - NextAuth.js v5
-- Claude AI (via CLI)
+- AI Integration (CLI)
 
 ## Setup
 
@@ -53,7 +53,7 @@ LINKEDIN_CLIENT_ID=""
 LINKEDIN_CLIENT_SECRET=""
 
 # AI
-CLAUDE_COMMAND="claude"
+AI_COMMAND="your-ai-cli"
 ```
 
 ## OAuth Callback URLs

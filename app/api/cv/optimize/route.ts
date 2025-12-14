@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { auth } from '@/lib/auth'
 import { db } from '@/lib/db'
-import { processFileWithClaudeJSON, generateJSONResponse } from '@/lib/ai/client'
+import { processFileWithAIJSON, generateJSONResponse } from '@/lib/ai/client'
 import { buildCVPrompt } from '@/lib/ai/prompts'
 import { sanitizeCV, wrapUserContent, validateJSONStructure } from '@/lib/ai/sanitize'
 import { deductPoint } from '@/lib/utils/points'
@@ -77,10 +77,10 @@ export async function POST(req: NextRequest) {
     let result: CVResult
 
     if (fileBuffer && fileName) {
-      // Process file directly with Claude CLI - use the system prompt from prompts.ts
-      result = await processFileWithClaudeJSON<CVResult>(fileBuffer, fileName, systemPrompt)
+      // Process file directly with AI CLI
+      result = await processFileWithAIJSON<CVResult>(fileBuffer, fileName, systemPrompt)
     } else if (cvText) {
-      // Process text with Claude CLI
+      // Process text with AI CLI
       const sanitizedCV = sanitizeCV(cvText)
       const wrappedCV = wrapUserContent(sanitizedCV, 'user_cv')
       result = await generateJSONResponse<CVResult>(systemPrompt, wrappedCV)

@@ -36,7 +36,7 @@ async function checkAIStatus(): Promise<CachedStatus> {
 
     throw new Error('Invalid AI response')
   } catch (error) {
-    console.error('[Status] Claude AI check failed:', error)
+    console.error('[Status] AI check failed:', error)
     return {
       status: 'maintenance',
       ai: 'offline',
@@ -60,7 +60,7 @@ export async function GET() {
     })
   }
 
-  // Fetch fresh status from Claude
+  // Fetch fresh status
   cachedStatus = await checkAIStatus()
 
   return NextResponse.json({
